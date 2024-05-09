@@ -1,0 +1,1 @@
+bot_tok = "7132334958:AAEZbPdu1B16v_V1oY6QUrKDXyLW-hCQj-0"
