@@ -11,13 +11,16 @@ router = Router()
 @router.message(CommandStart())
 async def cmd_start(message: Message):
     await message.answer(
-        text=f"Dungeons&Dragons\n"
+        text=f"Dungeons&Dragons:\n"
              f"Здесь основная информация о Dungeons&Dragons\n"
-             f"Миры\n"
+             f"______________________________________________________\n"
+             f"Миры:\n"
              f"Лор доступных миров мастеров\n"
-             f"Инструменты\n"
+             f"______________________________________________________\n"
+             f"Инструменты:\n"
              f"Инструменты для расчетов различных механик\n"
-             f"Лист персонажей\n"
+             f"______________________________________________________\n"
+             f"Лист персонажей:\n"
              f"Набор сведений об ваших игровых персонажей",
-        reply_markup=make_reply_keyboard(main_keyboard)
+        reply_markup=make_reply_keyboard(main_keyboard, 1, 1, 1, 1)
     )
