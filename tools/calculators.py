@@ -1,3 +1,6 @@
+from tools.calc_exceptions import NegativeNumberError
+
+
 class JumpCalculator:
     def __init__(self, har_strength: int) -> None:
         self.__har_strength = har_strength
@@ -8,18 +11,6 @@ class JumpCalculator:
 
     def calc_jump_height(self, running_start: bool) -> float:
         return 3 + self.__mod_strength if running_start else (3 + self.__mod_strength) / 2
-
-
-class NegativeNumberError(Exception):
-    def __init__(self, number):
-        self.number = number
-        super().__init__(f"Отрицательное число {number} не допустимо")
-
-def check_positive_number(number):
-    if number < 0:
-        raise NegativeNumberError(number)
-    else:
-        return number
 
 
 class ConverterCoins:
@@ -45,11 +36,11 @@ class ConverterCoins:
         new_points = self.convert_to_points(m, s, g, p)
         if operation:
             self.__points += new_points
+        elif self.__points >= new_points:
+            self.__points -= new_points
         else:
-            try:
-                result = self.__points - new_points
-            except NegativeNumberError as e:
-                print(e) # временно
+            raise NegativeNumberError
+
 
 
     @property
