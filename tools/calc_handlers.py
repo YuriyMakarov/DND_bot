@@ -22,7 +22,7 @@ async def tool(message: Message):
         text="Инструменты:"
              "Расчет прыжков(/calc_jump)\n"
              "Расчет переносимого веса(/calc_weight) - В разработке\n"
-             "Конвертер монет(/convert_coins)",
+             "Конвертер монет(/convert_coins) - В разработке",
         reply_markup=make_reply_keyboard(calc_keyboard, 1, 1, 1)
     )
 
@@ -59,10 +59,10 @@ async def super_jump(message: Message, state: FSMContext):
 @router.message(Command(commands=["calc_weight"]))
 @router.message(F.text == "Расчет веса")
 async def tool_weight(message: Message):
-    await message.answer(text="В разработке")
+    await message.answer(text="Сказали же, В РАЗРАБОТКЕ, БЛЯТЬ")
 
 
 @router.message(Command(commands=["converter_coins"]))
 @router.message(F.text == "Конвертер монет")
 async def tool_convert_coins(message: Message):
-    await message.answer(text="п")
+    await message.answer(text="Сказали же, В РАЗРАБОТКЕ, БЛЯТЬ")
