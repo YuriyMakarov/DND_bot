@@ -4,8 +4,7 @@ from aiogram.fsm.context import FSMContext
 from aiogram.types import Message
 from aiogram.fsm.state import StatesGroup, State
 
-from tools.jumps import *
-from tools.converter_coins import *
+from tools.calculators import JumpCalculator
 from keyboards import make_reply_keyboard, calc_keyboard
 
 
@@ -38,22 +37,23 @@ async def tool_jump(message: Message, state: FSMContext):
 @router.message(JumpStates.strength_jump)
 async def super_jump(message: Message, state: FSMContext):
     await message.answer(text="Делаем расчет")
-    try:
+    if not(message.text.isdigit()):
+        await message.answer(text="Введите положительное число, а не строку.")
+    elif int(message.text) < 1:
+        await message.answer(text="Принимаются только положительные числа")
+    else:
         har_strength = int(message.text)
+        jumping = JumpCalculator(har_strength)
         await message.answer(
             text=f"Прыжок в высоту\n"
-                 f"При разбеге в 10 футов: {get_jump_height(har_strength=har_strength, running_start=True)}\n"
-                 f"Без разбега: {get_jump_height(har_strength=har_strength, running_start=False)}\n"
+                 f"При разбеге в 10 футов: {jumping.calc_jump_height(True)}\n"
+                 f"Без разбега: {jumping.calc_jump_height(False)}\n"
                  f"_____________________________________\n"
                  f"Прыжок в длину\n"
-                 f"При разбеге в 10 футов: {get_jump_length(har_strength=har_strength, running_start= True)}\n"
-                 f"Без разбега: {get_jump_length(har_strength=har_strength, running_start= False)}\n")
-    except ValueError:
-        await message.answer(text="Введите положительное число, а не строку.")
-    except CharacteristicMinimumError:
-        await message.answer(text="Значение характеристики должно быть 5 или выше")
-    finally:
-        await state.clear()
+                 f"При разбеге в 10 футов: {jumping.calc_jump_length(True)}\n"
+                 f"Без разбега: {jumping.calc_jump_length(False)}\n"
+        )
+    await state.clear()
 
 
 @router.message(Command(commands=["calc_weight"]))

@@ -1,6 +1,4 @@
-class NegativeNumberError(Exception):
-    def __init__(self):
-        super().__init__(f"Отрицательное число не допустимо")
+from tools.negative_exception import NegativeNumberError
 
 
 def get_points(m_coin=0, s_coin=0, g_coin=0, p_coin=0) -> int:
