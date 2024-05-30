@@ -65,4 +65,4 @@ async def tool_weight(message: Message):
 @router.message(Command(commands=["converter_coins"]))
 @router.message(F.text == "Конвертер монет")
 async def tool_convert_coins(message: Message):
-    await message.answer(text="Сказали же, В РАЗРАБОТКЕ, БЛЯТЬ")
+    await message.answer(text="Введите ваш")

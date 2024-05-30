@@ -25,17 +25,3 @@ def sub_coins(points: int, m_coin=0, s_coin=0, g_coin=0, p_coin=0) -> int:
         return result
     else:
         raise NegativeNumberError
-
-
-# Тестовая функция для проверки
-# def print_points(m: int, s: int, g: int, p: int) -> None:
-#     print(f"ММ: {m}\n"
-#           f"СМ: {s}\n"
-#           f"ЗМ: {g}\n"
-#           f"ПМ: {p}\n")
-#
-#
-# money_points = get_points(2,34,101, 12)
-# money_points = add_coins(money_points, 13, 3, 234, 100)
-# coins = get_coins(money_points)
-# print_points(*coins)
